@@ -79,3 +79,5 @@ def YangTri(): # 没有Max值需要定义，杨辉三角本身不依托外部数
     while True:
         yield L
         L = [1] + [L[i] + L[i + 1] for i in range(len(L) - 1)] + [1]
+
+# 做一点更新，早上进行merge的训练
