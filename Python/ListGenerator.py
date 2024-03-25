@@ -7,3 +7,16 @@
 
 # 跟在for后面的if是一个筛选条件，不能带else
 # 但else 后跟pass continue 是非法的
+
+# *var 可变参数，传入的参数需要是一个tuple 或者 list
+
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+
+# **kw 关键字参数，可以传入0或者多个参数
+
+def person(name, age, **kw):
+    print('name:', name, 'age:', age, 'other:', kw)
