@@ -79,3 +79,5 @@ def YangTri(): # 没有Max值需要定义，杨辉三角本身不依托外部数
     while True:
         yield L
         L = [1] + [L[i] + L[i + 1] for i in range(len(L) - 1)] + [1]
+
+# 定义杨辉三角的时候要考虑的是下一层（由当前层得来），所以yield在L的计算之前。调用generator之后L的数值其实是下一层的数值，但由于yield在前，返回的数值是当前层的。这也是为什么第一层需要提前定义
