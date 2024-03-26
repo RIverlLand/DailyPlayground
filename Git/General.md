@@ -1,0 +1,4 @@
+1. Https网址一直无法push成功
+2. 建立本地公钥给了git push成功，所以是账号没法直接push的问题？那要怎么设置
+3. 设置了ssh之后sourcetree变得无法fetch，没有地方可以设置？设置里把ssh文件加入就可以，因为公钥没有设置passphrase sourcetree不需要额外的密码输入，之后可以正常fetch
+4. 无法直接设置https的推送，新的branch也无法正常创建pullrequest
