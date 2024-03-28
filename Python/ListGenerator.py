@@ -20,3 +20,5 @@ def calc(*numbers):
 
 def person(name, age, **kw):
     print('name:', name, 'age:', age, 'other:', kw)
+
+# str(n)[::-1] # [::-1]代表倒序的从尾到头组成list
