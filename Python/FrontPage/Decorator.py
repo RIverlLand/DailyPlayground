@@ -1,3 +1,4 @@
+# 装饰器：这种在代码运行期间动态增加功能的方式
 def log(func):
     def wrapper(*args, **kw): 
         print("call %s()" % func.__name__)

@@ -8,6 +8,8 @@
 # 跟在for后面的if是一个筛选条件，不能带else
 # 但else 后跟pass continue 是非法的
 
+# [points[i] for i in len(points)] 是非法的，生成器中不可以调用index调用
+
 # *var 可变参数，传入的参数需要是一个tuple 或者 list
 
 def calc(*numbers):
