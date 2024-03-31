@@ -3,6 +3,8 @@
 
 
 # 利用map和reduce做个浮点数转换比我想象的要复杂
+# map(function, iterable, ...)   apply a function to each item in an iterable
+# reduce(function, iterable, initializer=None)   takes a function and an iterable as arguments and applies the function to all the elements of the iterable
 
 def str2float(s):
     def turn(x):
