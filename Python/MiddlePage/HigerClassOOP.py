@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from types import MethodType
+
 class Student(object):
     def __init__(self) -> None:
         pass
@@ -13,14 +15,16 @@ print(s.name)
 def set_age(self, age):
     self.age = age
 
-from types import MethodType
-
 s.set_age = MethodType(set_age, s)
 s.set_age(25)
 s.age == 25 # True
 
+#! 给实例添加一个方法
+
 s2 = Student()
 s2.set_age(25) # returns error
+
+# 注意只有一个实例添加了此方法
 
 def set_score(self, score):
     self.score = score
@@ -30,6 +34,8 @@ Student.set_score = set_score
 s3 = Student()
 s3.set_score(60)
 s3.score == 60 # True
+
+#! 给实例添加属性是没问题的，只要不是修改private的属性
 
 # 使用__slots__
 # 但是，如果我们想要限制实例的属性怎么办？比如，只允许对Student实例添加name和age属性。
