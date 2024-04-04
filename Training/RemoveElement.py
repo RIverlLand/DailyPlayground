@@ -3,13 +3,14 @@
 from typing import List
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        i=0
-        for i in range(len(nums)):
-            if i == val:
-                nums.pop(i)
-                continue
+        l = 0
+        for r in range(len(nums)):
+            if nums[r] == val:
+                pass
             else:
-                i+=1
+                nums[l] = nums[r]
+                l+=1
+        return l
 
 s = Solution()
-s.removeElement([3,2,2,3], 3)
+s.removeElement([3], 2)
