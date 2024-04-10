@@ -47,14 +47,14 @@ class Solution:
         
 # def preorder(self, list: List[int], root: TreeNode):   #! Solution where return is in order first, no filtering of root node in the code.
         # 遇到空节点则返回
-        if root == None:
-            return
-        # 先遍历根节点
-        list.append(root.val)
-        # 再去左子树
-        self.preorder(list, root.left)
-        # 最后去右子树
-        self.preorder(list, root.right)
+        # if root == None:
+        #     return
+        # # 先遍历根节点
+        # list.append(root.val)
+        # # 再去左子树
+        # self.preorder(list, root.left)
+        # # 最后去右子树
+        # self.preorder(list, root.right)
     
 s = Solution()
 s.preorderTraversal()

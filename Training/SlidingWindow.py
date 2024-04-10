@@ -8,26 +8,42 @@
 from typing import List
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        l = 0
-        re = []
-        for l in range(len(nums) - 1):
-            r = l
-            flag = True
-            sum = nums[r]
-            while sum < target:
-                r += 1
-                if r >= len(nums):
-                    flag = False
-                    break
-                sum += nums[r]
-            if flag:
-                re.append(r-l+1)
-        if re == []:
-            re.append(0)
-        re.sort()
-        return re[0]
-    
+        # l = 0
+        # re = []
+        # while l < len(nums):
+        #     r = l
+        #     flag = True
+        #     sum = nums[r]
+        #     while sum < target:
+        #         r += 1
+        #         if r >= len(nums):
+        #             flag = False
+        #             break
+        #         sum += nums[r]
+        #     if flag:
+        #         re.append(r-l+1)
+        #         l = r
+        #     l+=1
+        # if re == []:
+        #     re.append(0)
+        # re.sort()
+        # return re[0]  # 超时
+        l,r = 0,0
+        re = len(nums) + 1
+        sum = 0
+        while r < len(nums):
+            sum += nums[r]
+            while sum >= target :
+                re = min(re, r-l+1)
+                sum -= nums[l]
+                l += 1
+                
+            else: r += 1
+        if re == len(nums) + 1:
+            re = 0
+        return re  # 滑动窗口的基本也是双指针，不需要从l开始重新遍历，而是和栈的思想一样剔除更小的l就可以
+
 
 s = Solution()
-s.minSubArrayLen(11, [1,1,1,1,1,1,1,1])
-            
+solution = s.minSubArrayLen(11, [1,1,1,1,1,1,1,1])
+print(solution)
