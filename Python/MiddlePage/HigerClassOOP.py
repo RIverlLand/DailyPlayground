@@ -51,4 +51,92 @@ class GraduateStudent(limitedStudent):
     pass
 
 g = GraduateStudent()
-g.score = 9999 # no error
+g.score = 9999 # no error   除非在子类中也定义__slots__，这样，子类实例允许定义的属性就是自身的__slots__加上父类的__slots__
+
+# 但在一个类之外随意更改其属性是一个不合理的行为，所以需要一些方法来限制对其属性的修改，例如：
+class Student(object):
+
+    def get_score(self):
+         return self._score
+
+    def set_score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+
+# 但是，上面的调用方法又略显复杂，没有直接用属性这么直接简单。
+
+# 有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？对于追求完美的Python程序员来说，这是必须要做到的！
+
+# 还记得装饰器（decorator）可以给函数动态加上功能吗？对于类的方法，装饰器一样起作用。Python内置的@property装饰器就是负责把一个方法变成属性调用的
+
+class Student(object):
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+
+# >>> s = Student()
+# >>> s.score = 60 # OK，实际转化为s.set_score(60)
+# >>> s.score # OK，实际转化为s.get_score()
+# 60
+# >>> s.score = 9999
+# Traceback (most recent call last):
+#   ...
+# ValueError: score must between 0 ~ 100!
+# 注意到这个神奇的@property，我们在对实例属性操作的时候，就知道该属性很可能不是直接暴露的，而是通过getter和setter方法来实现的。
+
+# 还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性： #! getter 和 setter本身应该不是装饰器或者property的默认方法，只是一个叫法，似乎是从java来的
+class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2015 - self._birth
+    
+# 要特别注意：属性的方法名不要和实例变量重名。例如，以下的代码是错误的：
+
+class Student(object):
+
+    # 方法名称和实例变量均为birth:
+    @property
+    def birth(self):
+        return self.birth
+#! 这是因为调用s.birth时，首先转换为方法调用，在执行return self.birth时，又视为访问self的属性，于是又转换为方法调用，造成无限递归，最终导致栈溢出报错RecursionError。
+
+
+
+# 请利用@property给一个Screen对象加上width和height属性，以及一个只读属性resolution：:
+class Screen(object):
+    @property
+    def width(self):
+        return self._width
+    @width.setter
+    def width(self, width):
+        self._width = width
+    @property
+    def height(self):
+        return self._height
+    @width.setter
+    def height(self, height):
+        self._height = height
+    @property
+    def resolution(self):
+        return self._height * self._width
