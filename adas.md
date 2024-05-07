@@ -19,6 +19,8 @@ EEA: Electrical/Electronic Architecture
 拓扑图: Topological graph
 SOP: Standard Operating Procedure
 CAN: Controller Area Network
+VRU：Vulnerable Road Users
+
 
 1. Create, manage and steer testing and validation processes for the L2 driver assistance development projects.
    - L2:驾驶操作是车辆，但是人要监管；巡航、跟车、APA泊车、城市NOA（Navigate on Autopilot）之类的；
@@ -107,3 +109,7 @@ CAN: Controller Area Network
    2. FlexRay总线是由宝马、飞利浦、飞思卡尔和博世等公司共同制定的一种新型通信标准， 专为车内联网而设计， 采用基于时间触发机制， 具有高带宽、容错性能好等特点， 在实时性、可靠性和灵活性方面具有一定的优势。
    3. 利用时间触发通信时， 网络中的各个节点都预先知道彼此将要进行通信的时间， 接收器提前知道报文到达的时间， 报文在总线上的时间可以预测出来。
    4. 它采用了周期通信的方式， 一个通信周期可以划分为静态部分、动态部分、特征窗和网络空闲时间4个部分。静态部分和动态部分用来传输总线数据，即FlexRay报文。特征窗用来发送唤醒特征符和媒介访问检测特征符。网络空闲时间用来实现分布式的时钟同步和节点参数的初始化。FlexRay具有高速、可靠及安全的特点。
+4. 各种传感器
+   1. Lidar：上位机软件用于显示实时点云图及回放功能，采集用Wireshark。
+
+![picture 4](images/f60bcd009326a359bfb74e667f2fa45c88b55881a2f0a02bb3dbdf4d6e409a49.png)  
